@@ -1,63 +1,121 @@
+/* style.css */
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 更現代的字體 */
+    margin: 0; /* 移除預設 body 邊距 */
+    background-color: #f0f2f5; /* 輕微的灰色背景 */
     color: #333;
+    line-height: 1.6;
 }
 
 h1 {
     text-align: center;
     color: #0056b3;
+    padding: 20px 0;
+    margin-bottom: 0; /* 移除預設 margin-bottom */
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .gallery-container {
+    /* 使用 Grid 佈局實現響應式圖片磚 */
     display: grid;
+    /* 自動調整列數，最小 250px，最大 1fr (均分剩餘空間) */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    gap: 25px; /* 增加磚塊間距 */
+    padding: 30px; /* 增加容器內邊距 */
+    max-width: 1200px; /* 限制最大寬度，讓內容居中 */
+    margin: 20px auto; /* 居中顯示 */
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* 更明顯的陰影 */
 }
 
 .gallery-item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px; /* 更圓潤的邊角 */
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background-color: #ffffff;
+    display: flex; /* 使用 flex 佈局來控制內容排列 */
+    flex-direction: column; /* 垂直堆疊圖片和資訊 */
 }
 
 .gallery-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px); /* 更明顯的抬升效果 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 更明顯的陰影 */
 }
 
 .gallery-item img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    /* height: 200px; 移除固定高度 */
+    /* object-fit: cover; 移除 cover */
     display: block;
+    /* 新增：保持圖片比例並適應容器，這樣直圖和橫圖會保持其原始比例 */
+    max-width: 100%;
+    height: auto; /* 保持圖片比例 */
+    flex-shrink: 0; /* 防止圖片縮小 */
+    border-top-left-radius: 9px; /* 確保圓角 */
+    border-top-right-radius: 9px;
+}
+
+/* 新增：為圖片容器設置一個固定比例的高度，並讓圖片在其中維持比例 */
+/* 這樣可以讓每張圖片磚的高度一致，同時圖片不會被裁切 */
+.image-wrapper {
+    width: 100%;
+    /* 使用 padding-bottom Hack 來保持固定比例，例如 75% 意味著 4:3 比例 */
+    /* 您可以根據需求調整這個比例，例如 56.25% 是 16:9 */
+    /* 這裡使用 75% 讓圖片有足夠的空間顯示原始比例 */
+    padding-bottom: 75%; /* 3:4 比例，您可以試試 56.25% (16:9) 或 100% (1:1) */
+    position: relative;
+    overflow: hidden; /* 確保內容超出時被裁切 */
+    background-color: #eee; /* 載入圖片前的佔位背景 */
+}
+
+.image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 讓圖片完全顯示在容器中，保持比例 */
+    object-position: center; /* 圖片居中 */
 }
 
 .image-info {
     padding: 15px;
-    background-color: #f9f9f9;
+    background-color: #fefefe;
+    flex-grow: 1; /* 讓資訊區塊佔滿剩餘高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 內容上下對齊 */
 }
 
 .image-info h3 {
     margin-top: 0;
-    margin-bottom: 5px;
-    color: #0056b3;
+    margin-bottom: 8px; /* 增加標題與描述間距 */
+    color: #007bff; /* 更亮的藍色 */
+    font-size: 1.15em;
+    white-space: nowrap; /* 限制標題不換行 */
+    overflow: hidden; /* 超出部分隱藏 */
+    text-overflow: ellipsis; /* 超出部分顯示省略號 */
 }
 
 .image-info p {
     font-size: 0.9em;
-    line-height: 1.5;
-    color: #666;
+    line-height: 1.4;
+    color: #555;
+    /* 限制描述顯示兩行 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 限制為兩行 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* 超出部分顯示省略號 */
+    margin-bottom: 0; /* 移除預設 margin-bottom */
 }
 
-/* Lightbox styles */
+/* Lightbox styles (浮動放大圖片視窗) */
 .lightbox {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -68,43 +126,103 @@ h1 {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+    background-color: rgba(0, 0, 0, 0.95); /* 更深的背景，突出圖片 */
+    backdrop-filter: blur(5px); /* 輕微背景模糊效果 */
+    -webkit-backdrop-filter: blur(5px); /* 兼容 Safari */
 }
 
 .lightbox-content {
     margin: auto;
     display: block;
-    max-width: 80%;
-    max-height: 80vh;
-    border-radius: 8px;
+    max-width: 90%; /* 增加最大寬度 */
+    max-height: 85vh; /* 增加最大高度 */
+    object-fit: contain; /* 確保放大後圖片也保持比例 */
+    object-position: center;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5); /* 放大後圖片陰影 */
 }
 
 .lightbox-caption {
-    margin: auto;
+    margin: 20px auto; /* 增加上下邊距 */
     display: block;
-    width: 80%;
-    max-width: 700px;
+    width: 90%; /* 增加寬度 */
+    max-width: 800px; /* 增加最大寬度 */
     text-align: center;
-    color: #ccc;
-    padding: 10px 0;
-    height: 150px; /* Increased height to accommodate description */
-    overflow-y: auto; /* Allow scrolling for long descriptions */
+    color: #eee;
+    padding: 15px 20px; /* 增加內邊距 */
+    background-color: rgba(0, 0, 0, 0.6); /* 半透明背景 */
+    border-radius: 8px;
+    box-sizing: border-box; /* 確保 padding 不增加寬度 */
+}
+
+.lightbox-caption h3 {
+    color: #ffffff; /* 標題顏色 */
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.lightbox-caption p {
+    font-size: 1.1em;
+    line-height: 1.5;
+    color: #cccccc;
+    /* 點開後顯示完整文字，所以這裡不限制行數 */
+    white-space: normal; /* 取消 nowrap */
+    overflow: visible; /* 取消 hidden */
+    text-overflow: clip; /* 取消 ellipsis */
 }
 
 .close-button {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
+    position: fixed; /* 確保按鈕位置 */
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 50px; /* 放大關閉按鈕 */
+    font-weight: lighter; /* 輕一點的字重 */
+    transition: 0.3s ease;
     cursor: pointer;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7); /* 增加陰影使其更清晰 */
 }
 
 .close-button:hover,
 .close-button:focus {
-    color: #bbb;
+    color: #aaa;
     text-decoration: none;
-    cursor: pointer;
+}
+
+/* 手機版適應 (Optional: 如果需要更精細的控制) */
+@media (max-width: 768px) {
+    .gallery-container {
+        grid-template-columns: 1fr; /* 在小螢幕上顯示為單列 */
+        padding: 15px;
+        gap: 15px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    .gallery-item img {
+        height: auto; /* 在手機上高度自動 */
+    }
+    .image-info {
+        padding: 10px;
+    }
+    .image-info h3 {
+        font-size: 1em;
+    }
+    .image-info p {
+        font-size: 0.8em;
+    }
+    .lightbox-content {
+        max-width: 95%;
+        max-height: 80vh;
+    }
+    .lightbox-caption {
+        width: 95%;
+        padding: 10px;
+    }
+    .close-button {
+        font-size: 40px;
+        top: 10px;
+        right: 15px;
+    }
 }
