@@ -1,16 +1,16 @@
 [
   {
-    "filename": "images/01.jpg",
+    "path": "images/01.jpg",
     "title": "夕陽",
     "description": "在海邊拍攝的美麗夕陽"
   },
   {
-    "filename": "images/天風 腿巧.png",
+    "path": "images/天風 腿巧.png",
     "title": "城市夜景",
     "description": "燈火通明的城市全景"
   },
   {
-    "filename": "images/天風.png",
+    "path": "images/天風.png",
     "title": "山中清晨",
     "description": "雲霧繚繞的山谷"
   }
