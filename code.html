@@ -7,94 +7,135 @@
     <style>
         /* style.css START */
 
-        /* 定義 CSS 變數 */
+        /*
+         * 主題樣式變數設定 (可在 :root {} 中統一調整)
+         * --------------------------------------------------------------------------
+         */
         :root {
-            --primary-color: #0056b3; /* 標題和一些強調色 */
+            /* --- 顏色設定 --- */
+            --main-title-color: #0056b3; /* "我的圖片藝廊" 主標題顏色 */
+            --tile-title-color: #007bff; /* 圖片浮磚標題顏色 */
             --background-color: #f0f2f5; /* 頁面背景色 */
             --container-bg-color: #ffffff; /* 藝廊容器背景色 */
             --item-bg-color: #ffffff; /* 圖片磚背景色 */
-            --text-color: #333; /* 主要文字顏色 */
-            --secondary-text-color: #555; /* 次要文字顏色 */
+            --text-color: #333; /* 藝廊描述等主要文字顏色 */
+            --secondary-text-color: #555; /* 次要文字顏色 (目前用於藝廊描述) */
             --border-color: #e0e0e0; /* 邊框顏色 */
-            --hover-shadow: rgba(0, 0, 0, 0.2); /* 懸停陰影色 */
-            --lightbox-bg-color: rgba(0, 0, 0, 0.95); /* 浮動視窗背景色 */
-            --lightbox-caption-bg-color: rgba(0, 0, 0, 0.6); /* 浮動視窗文字背景色 */
+            --hover-shadow: rgba(0, 0, 0, 0.2); /* 懸停陰影色 (RGBA 值請自行調整透明度) */
+            --lightbox-bg-color: rgba(0, 0, 0, 0.95); /* 浮動視窗背景色 (RGBA 值請自行調整透明度) */
+            --lightbox-caption-bg-color: rgba(0, 0, 0, 0.6); /* 浮動視窗文字背景色 (RGBA 值請自行調整透明度) */
             --lightbox-text-color: #eee; /* 浮動視窗文字顏色 */
             --close-button-color: #fff; /* 關閉按鈕顏色 */
-            --body-background-image: none; /* 新增變數，用於背景圖片 */
-            --body-background-size: auto; /* 新增變數，用於背景圖片尺寸 */
-            --body-background-position: center center; /* 新增變數，用於背景圖片位置 */
-            --body-background-repeat: repeat; /* 新增變數，用於背景圖片重複 */
+
+            /* --- 字體大小設定 --- */
+            --body-font-size: 16px; /* 基礎文字大小 (影響大部分文字) */
+            --main-title-font-size: 2.5em; /* "我的圖片藝廊" 主標題字體大小 */
+            --tile-title-font-size: 1.15em; /* 圖片浮磚標題字體大小 */
+            --description-font-size: 0.9em; /* 圖片描述字體大小 */
+            --lightbox-title-font-size: 1.3em; /* 浮動視窗標題字體大小 */
+            --lightbox-description-font-size: 1.1em; /* 浮動視窗描述字體大小 */
+            --close-button-font-size: 50px; /* 關閉按鈕字體大小 */
+
+
+            /* --- 背景圖片設定 (請將 'none' 替換為 'url("您的圖片網址或相對路徑")' 以啟用背景圖片) --- */
+            /* 範例：--body-background-image: url("https://example.com/your-background.jpg"); */
+            /* 或：--body-background-image: url("images/background-pattern.png"); */
+            /* 如果要移除背景圖片，請設回 'none'。 */
+            --body-background-image: none; /* 頁面背景圖片 */
+
+            /* 'auto': 圖片原始尺寸
+             * 'cover': 圖片會完全覆蓋背景區域，可能會裁切部分圖片
+             * 'contain': 圖片會完全顯示在背景區域內，可能會留下空白
+             * '100% 100%': 圖片寬高都拉伸至 100%
+             * '50%': 圖片寬高都為 50%
+             */
+            --body-background-size: auto; /* 背景圖片尺寸 */
+
+            /* 'center center': 居中 (預設)
+             * 'top left': 左上
+             * 'bottom right': 右下
+             * '50% 50%': 居中
+             * '20px 30px': 距離左邊 20px，距離頂部 30px
+             */
+            --body-background-position: center center; /* 背景圖片位置 */
+
+            /* 'repeat': 水平垂直都重複 (預設)
+             * 'no-repeat': 不重複
+             * 'repeat-x': 只水平重複
+             * 'repeat-y': 只垂直重複
+             */
+            --body-background-repeat: repeat; /* 背景圖片重複方式 */
         }
+        /* -------------------------------------------------------------------------- */
+
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 更現代的字體 */
-            margin: 0; /* 移除預設 body 邊距 */
-            background-color: var(--background-color); /* 使用變數 */
-            color: var(--text-color); /* 使用變數 */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
             line-height: 1.6;
-            background-image: var(--body-background-image); /* 使用變數 */
-            background-size: var(--body-background-size); /* 使用變數 */
-            background-position: var(--body-background-position); /* 使用變數 */
-            background-repeat: var(--body-background-repeat); /* 使用變數 */
+            font-size: var(--body-font-size); /* 應用基礎文字大小 */
+            background-image: var(--body-background-image);
+            background-size: var(--body-background-size);
+            background-position: var(--body-background-position);
+            background-repeat: var(--body-background-repeat);
         }
 
         h1 {
             text-align: center;
-            color: var(--primary-color); /* 使用變數 */
+            color: var(--main-title-color); /* 使用新變數 for "我的圖片藝廊" */
             padding: 20px 0;
-            margin-bottom: 0; /* 移除預設 margin-bottom */
-            background-color: var(--container-bg-color); /* 使用變數 */
+            margin-bottom: 0;
+            background-color: var(--container-bg-color);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            font-size: var(--main-title-font-size); /* 應用主標題字體大小 */
         }
 
         .gallery-container {
-            /* 使用 Grid 佈局實現響應式圖片磚 */
             display: grid;
-            /* 自動調整列數，最小 250px，最大 1fr (均分剩餘空間) */
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px; /* 增加磚塊間距 */
-            padding: 30px; /* 增加容器內邊距 */
-            max-width: 1200px; /* 限制最大寬度，讓內容居中 */
-            margin: 20px auto; /* 居中顯示 */
-            background-color: var(--container-bg-color); /* 使用變數 */
+            gap: 25px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: var(--container-bg-color);
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* 更明顯的陰影 */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
 
         .gallery-item {
-            border: 1px solid var(--border-color); /* 使用變數 */
-            border-radius: 10px; /* 更圓潤的邊角 */
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            background-color: var(--item-bg-color); /* 使用變數 */
-            display: flex; /* 使用 flex 佈局來控制內容排列 */
-            flex-direction: column; /* 垂直堆疊圖片和資訊 */
+            background-color: var(--item-bg-color);
+            display: flex;
+            flex-direction: column;
         }
 
         .gallery-item:hover {
-            transform: translateY(-8px); /* 更明顯的抬升效果 */
-            box-shadow: 0 8px 16px var(--hover-shadow); /* 更明顯的陰影 */
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px var(--hover-shadow);
         }
 
         .gallery-item img {
             width: 100%;
             display: block;
             max-width: 100%;
-            height: auto; /* 保持圖片比例 */
-            flex-shrink: 0; /* 防止圖片縮小 */
-            border-top-left-radius: 9px; /* 確保圓角 */
+            height: auto;
+            flex-shrink: 0;
+            border-top-left-radius: 9px;
             border-top-right-radius: 9px;
         }
 
-        /* 為圖片容器設置一個固定比例的高度，並讓圖片在其中維持比例 */
         .image-wrapper {
             width: 100%;
-            padding-bottom: 75%; /* 3:4 比例，您可以試試 56.25% (16:9) 或 100% (1:1) */
+            padding-bottom: 75%;
             position: relative;
-            overflow: hidden; /* 確保內容超出時被裁切 */
-            background-color: #eee; /* 載入圖片前的佔位背景 */
+            overflow: hidden;
+            background-color: #eee;
         }
 
         .image-wrapper img {
@@ -103,109 +144,107 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain; /* 讓圖片完全顯示在容器中，保持比例 */
-            object-position: center; /* 圖片居中 */
+            object-fit: contain;
+            object-position: center;
         }
 
         .image-info {
             padding: 15px;
-            background-color: var(--item-bg-color); /* 使用變數 */
-            flex-grow: 1; /* 讓資訊區塊佔滿剩餘高度 */
+            background-color: var(--item-bg-color);
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* 內容上下對齊 */
+            justify-content: space-between;
         }
 
         .image-info h3 {
             margin-top: 0;
-            margin-bottom: 8px; /* 增加標題與描述間距 */
-            color: var(--primary-color); /* 使用變數 */
-            font-size: 1.15em;
-            white-space: nowrap; /* 限制標題不換行 */
-            overflow: hidden; /* 超出部分隱藏 */
-            text-overflow: ellipsis; /* 超出部分顯示省略號 */
+            margin-bottom: 8px;
+            color: var(--tile-title-color); /* 使用新變數 for 浮磚標題 */
+            font-size: var(--tile-title-font-size); /* 應用浮磚標題字體大小 */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .image-info p {
-            font-size: 0.9em;
+            font-size: var(--description-font-size); /* 應用圖片描述字體大小 */
             line-height: 1.4;
-            color: var(--secondary-text-color); /* 使用變數 */
-            /* 限制描述顯示兩行 */
+            color: var(--secondary-text-color);
             display: -webkit-box;
-            -webkit-line-clamp: 2; /* 限制為兩行 */
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            text-overflow: ellipsis; /* 超出部分顯示省略號 */
-            margin-bottom: 0; /* 移除預設 margin-bottom */
+            text-overflow: ellipsis;
+            margin-bottom: 0;
         }
 
         /* Lightbox styles (浮動放大圖片視窗) */
         .lightbox {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
-            padding-top: 60px; /* Location of the box */
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 60px;
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: var(--lightbox-bg-color); /* 更深的背景，突出圖片 */
-            backdrop-filter: blur(5px); /* 輕微背景模糊效果 */
-            -webkit-backdrop-filter: blur(5px); /* 兼容 Safari */
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: var(--lightbox-bg-color);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
         .lightbox-content {
             margin: auto;
             display: block;
-            max-width: 90%; /* 增加最大寬度 */
-            max-height: 85vh; /* 增加最大高度 */
-            object-fit: contain; /* 確保放大後圖片也保持比例 */
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
             object-position: center;
             border-radius: 12px;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5); /* 放大後圖片陰影 */
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
         }
 
         .lightbox-caption {
-            margin: 20px auto; /* 增加上下邊距 */
+            margin: 20px auto;
             display: block;
-            width: 90%; /* 增加寬度 */
-            max-width: 800px; /* 增加最大寬度 */
+            width: 90%;
+            max-width: 800px;
             text-align: center;
-            color: var(--lightbox-text-color); /* 使用變數 */
-            padding: 15px 20px; /* 增加內邊距 */
-            background-color: var(--lightbox-caption-bg-color); /* 半透明背景 */
+            color: var(--lightbox-text-color);
+            padding: 15px 20px;
+            background-color: var(--lightbox-caption-bg-color);
             border-radius: 8px;
-            box-sizing: border-box; /* 確保 padding 不增加寬度 */
+            box-sizing: border-box;
         }
 
         .lightbox-caption h3 {
-            color: var(--close-button-color); /* 標題顏色 */
+            color: var(--close-button-color);
             margin-top: 0;
             margin-bottom: 10px;
-            font-size: 1.3em;
+            font-size: var(--lightbox-title-font-size); /* 應用浮動視窗標題字體大小 */
         }
 
         .lightbox-caption p {
-            font-size: 1.1em;
+            font-size: var(--lightbox-description-font-size); /* 應用浮動視窗描述字體大小 */
             line-height: 1.5;
-            color: var(--lightbox-text-color); /* 使用變數 */
-            /* 點開後顯示完整文字，所以這裡不限制行數 */
-            white-space: normal; /* 取消 nowrap */
-            overflow: visible; /* 取消 hidden */
-            text-overflow: clip; /* 取消 ellipsis */
+            color: var(--lightbox-text-color);
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
         }
 
         .close-button {
-            position: fixed; /* 確保按鈕位置 */
+            position: fixed;
             top: 20px;
             right: 30px;
-            color: var(--close-button-color); /* 使用變數 */
-            font-size: 50px; /* 放大關閉按鈕 */
-            font-weight: lighter; /* 輕一點的字重 */
+            color: var(--close-button-color);
+            font-size: var(--close-button-font-size); /* 應用關閉按鈕字體大小 */
+            font-weight: lighter;
             transition: 0.3s ease;
             cursor: pointer;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7); /* 增加陰影使其更清晰 */
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
         }
 
         .close-button:hover,
@@ -217,24 +256,24 @@
         /* 手機版適應 (Optional: 如果需要更精細的控制) */
         @media (max-width: 768px) {
             .gallery-container {
-                grid-template-columns: 1fr; /* 在小螢幕上顯示為單列 */
+                grid-template-columns: 1fr;
                 padding: 15px;
                 gap: 15px;
             }
             h1 {
-                font-size: 1.8em;
+                font-size: calc(var(--main-title-font-size) * 0.7); /* 在小螢幕上略微縮小 */
             }
             .gallery-item img {
-                height: auto; /* 在手機上高度自動 */
+                height: auto;
             }
             .image-info {
                 padding: 10px;
             }
             .image-info h3 {
-                font-size: 1em;
+                font-size: calc(var(--tile-title-font-size) * 0.85); /* 在小螢幕上略微縮小 */
             }
             .image-info p {
-                font-size: 0.8em;
+                font-size: calc(var(--description-font-size) * 0.9); /* 在小螢幕上略微縮小 */
             }
             .lightbox-content {
                 max-width: 95%;
@@ -245,7 +284,7 @@
                 padding: 10px;
             }
             .close-button {
-                font-size: 40px;
+                font-size: calc(var(--close-button-font-size) * 0.8); /* 在小螢幕上略微縮小 */
                 top: 10px;
                 right: 15px;
             }
@@ -273,6 +312,13 @@
             const lightboxCaption = document.getElementById('lightbox-caption');
             const closeButton = document.querySelector('.close-button');
 
+            // --- 禁止右鍵功能 START ---
+            // 移除以下兩行代碼 (或將其註解掉)，即可取消禁止右鍵功能
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+            // --- 禁止右鍵功能 END ---
+
             // 從 JSON 檔案載入圖片資料
             fetch('images.json')
                 .then(response => response.json())
@@ -281,7 +327,6 @@
                         const galleryItem = document.createElement('div');
                         galleryItem.classList.add('gallery-item');
 
-                        // 為圖片創建一個包裹容器
                         const imageWrapper = document.createElement('div');
                         imageWrapper.classList.add('image-wrapper');
 
@@ -289,7 +334,7 @@
                         img.src = image.path;
                         img.alt = image.title;
 
-                        imageWrapper.appendChild(img); // 將圖片放入包裹容器
+                        imageWrapper.appendChild(img);
 
                         const infoDiv = document.createElement('div');
                         infoDiv.classList.add('image-info');
@@ -303,7 +348,7 @@
                         infoDiv.appendChild(titleH3);
                         infoDiv.appendChild(descriptionP);
 
-                        galleryItem.appendChild(imageWrapper); // 將圖片包裹容器添加到藝廊項目
+                        galleryItem.appendChild(imageWrapper);
                         galleryItem.appendChild(infoDiv);
 
                         galleryItem.addEventListener('click', () => {
