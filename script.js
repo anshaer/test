@@ -1,3 +1,4 @@
+// script.js
 document.addEventListener('DOMContentLoaded', () => {
     const galleryContainer = document.getElementById('gallery-container');
     const lightbox = document.getElementById('lightbox');
@@ -13,9 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const galleryItem = document.createElement('div');
                 galleryItem.classList.add('gallery-item');
 
+                // 為圖片創建一個包裹容器
+                const imageWrapper = document.createElement('div');
+                imageWrapper.classList.add('image-wrapper');
+
                 const img = document.createElement('img');
                 img.src = image.path;
                 img.alt = image.title;
+
+                imageWrapper.appendChild(img); // 將圖片放入包裹容器
 
                 const infoDiv = document.createElement('div');
                 infoDiv.classList.add('image-info');
@@ -28,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 infoDiv.appendChild(titleH3);
                 infoDiv.appendChild(descriptionP);
-                galleryItem.appendChild(img);
+
+                galleryItem.appendChild(imageWrapper); // 將圖片包裹容器添加到藝廊項目
                 galleryItem.appendChild(infoDiv);
 
                 galleryItem.addEventListener('click', () => {
